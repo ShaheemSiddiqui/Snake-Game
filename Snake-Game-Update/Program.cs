@@ -157,9 +157,9 @@ namespace Snake
                     // feeding the snake
                     do
                     {
+                        negativePoints++;
                         food = new Position(randomNumbersGenerator.Next(3, Console.WindowHeight),
                                             randomNumbersGenerator.Next(3, Console.WindowWidth));
-                       negativePoints++;
                     }
                     while (snakeElements.Contains(food) && obstacles.Contains(food));
                     lastFoodTime = Environment.TickCount;
