@@ -34,7 +34,7 @@ Actions
 	
 	3. To check, work, fix and improve on the project code after starting Toggl to track time
 
-	4. Target date and time for final update of Week 4: [Thursday(16/4/2929), 12:00PM]
+	4. Target date and time for final update of Week 4: [Thursday(16/4/2020), 12:00PM]
 
 	5.  Confirm with the team whether the fixed, modified or improved code is working
 	6. Update report after a member finish their part of the group report
