@@ -20,6 +20,7 @@ Decisions
 		a. Shaheem Siddiqui (100072122) - Variations of food
 						- Improve and modify codes into methods or functions
 		b. Cheryl Chia Siaw Yu (100079424) - Real Time Score
+						   - Improve and modify codes into methods or functions
 
 	5. The rest of the tasks will be distributed after submitting Week 5 Tasks
 Actions
