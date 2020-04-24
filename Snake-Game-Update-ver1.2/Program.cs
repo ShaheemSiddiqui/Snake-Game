@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Threading;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Snake
 {
@@ -32,7 +33,8 @@ namespace Snake
             int foodDissapearTime = 8000;
             int negativePoints = 0;
             int userPoints = negativePoints;
-
+            int health = 3;
+          
             //snake directions from user - if any changes to this will only mess up the direction
             Position[] directions = new Position[]
             {
@@ -157,20 +159,39 @@ namespace Snake
 
 
                 //Score Board - Top Left
-                Console.SetCursorPosition(1, 1);
+                Console.SetCursorPosition(0, 1);
                 Console.ForegroundColor = ConsoleColor.Red;
                 userPoints = negativePoints;
-                Console.WriteLine("Your points are: {0}", userPoints);
+                Console.WriteLine("Your points are: {0} \nHealth Points: {1}", userPoints, health);
 
+                //Game Over After Health = 0
                 if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
                 {
-                    Console.SetCursorPosition(1, 0);
-                    Console.WriteLine("Game over!");
-                    //if (userPoints < 0) userPoints = 0;
-                    //userPoints = Math.Max(userPoints, 0);
-                    return;
+                    Console.Clear();
+                    health -= 1;
+                    for (int x = 1; x<6; x++)
+                    {
+                        obstacles[x] = new Position(randomNumbersGenerator.Next(3,Console.WindowHeight), randomNumbersGenerator.Next(3,Console.WindowWidth));
+                    }
+                    foreach (Position obstacle in obstacles)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.SetCursorPosition(obstacle.col, obstacle.row);
+                        Console.Write("=");
+                    }
+                    if (health == 0)
+                    {
+                        Console.Clear();
+                        Console.SetCursorPosition(55, 10);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Game over!");
+                        Console.SetCursorPosition(51, 12);
+                        Console.WriteLine("Your points are: {0}", userPoints);
+                        //if (userPoints < 0) userPoints = 0;
+                        //userPoints = Math.Max(userPoints, 0);
+                        return;
+                    }
                 }
-
                 Console.SetCursorPosition(snakeHead.col, snakeHead.row);
                 Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.Write("*");
