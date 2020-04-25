@@ -3,11 +3,9 @@ Date/Location: 23-APR-2020 at 14:00 [Online]
 
 Information Updates/Reminders
 =============================
-* Last week was about analyzing the legacy code.
-* This week is about making changes to the codes based on the product owner’s requirement, improve on the programming style and planning for improvement and extension to the program
-* This week we will use a sprint process over three weeks to improve and extend the project.
-* Everyone should be able to use the team git repo, GitHub wiki’s and Trello.
-* Everyone should have used Toggl to track their time last week. Also track time on tasks this week with Toggl.
+* Meeting with Project Owner.
+* Tools like GitHub, Trello, Toggl needed to Track Project.
+* Update Wiki
 
 Decisions Needed
 ================
@@ -18,4 +16,4 @@ Decisions Needed
 General Items
 =============
 * Find any remaining bugs and missing features.
-* Each member has to complete a minimum of two new features in the next two week sprint.
+* Each member must complete a minimum of two new features in the next two-week sprint.
