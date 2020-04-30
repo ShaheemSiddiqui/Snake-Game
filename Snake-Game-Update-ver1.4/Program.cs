@@ -22,6 +22,8 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+            
+
             double  sleepTime           = 100;              //SleepTime indicates speed movement of the snake, the higher the number, the slower the speed of the snake
             byte    right               = 0;
             byte    left                = 1;
@@ -79,7 +81,7 @@ namespace Snake
             DrawObstacles(obstacles);
             DrawSnake(snakeElements);
 
-            while (true)
+            for(;;)
             {
                 direction = DirectionCheck(up, down, left, right, direction);
 
@@ -110,12 +112,17 @@ namespace Snake
 
                     if (health == 0)
                     {
+
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Clear();
                         Console.SetCursorPosition(55, 10);
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Game over!");
                         Console.SetCursorPosition(51, 12);
                         Console.WriteLine("Your points are: {0}", userPoints);
+                        Console.SetCursorPosition(45, 14);
+                        Console.Write("Press The Enter Key to Exit");
+                        while (Console.ReadKey().Key != ConsoleKey.Enter) { }
                         return;
                     }
                 }
@@ -189,7 +196,7 @@ namespace Snake
                 DrawFood(food);
                 sleepTime -= 0.01;
                 Thread.Sleep((int)sleepTime);
-            }
+            }      
         }
 
         //Method Draws Obstacles
@@ -202,6 +209,7 @@ namespace Snake
                 Console.Write("=");
             }
         }
+
         //Method Draws Food
         static void DrawFood(List<Position> food)
         {
@@ -225,6 +233,7 @@ namespace Snake
                 Console.Write("*");
             }
         }
+
         //Method Checks Direction
         static int DirectionCheck(byte up, byte down, byte left, byte right, int direction)
         {
