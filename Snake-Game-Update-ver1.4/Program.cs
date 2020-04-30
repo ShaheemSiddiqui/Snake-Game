@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Collections;
+//using System.Text;
+//using System.Collections;
 using System.Threading;
-using System.Security.Cryptography.X509Certificates;
+//using System.Security.Cryptography.X509Certificates;
+using System.Media;
 
 namespace Snake
 {
@@ -33,10 +34,17 @@ namespace Snake
             int     foodDissapearTime   = 8000;
             int     health              = 3;
             int     negativePoints      = 0;
+            int     SoundPlayTime       = 5;
             int     userPoints          = negativePoints;
             int     direction           = right;
+            bool    SoundCheck          = false;
 
             Random randomNumbersGenerator = new Random();
+
+            var BiteSound = new SoundPlayer(); BiteSound.SoundLocation = @"Sounds\Bite.wav";
+            var DamageSound = new SoundPlayer(); DamageSound.SoundLocation = @"Sounds\Damage.wav";
+            var GameOverSound = new SoundPlayer(); GameOverSound.SoundLocation = @"Sounds\GameOver.wav";
+            var BackgroundSound = new SoundPlayer(); BackgroundSound.SoundLocation = @"Sounds\Background.wav";
 
             //Snake directions from user - if any changes to this will only mess up the direction
             Position[] directions = new Position[]
@@ -78,6 +86,7 @@ namespace Snake
                 snakeElements.Enqueue(new Position(5, i));
             }
 
+            BackgroundSound.PlayLooping();
             DrawObstacles(obstacles);
             DrawSnake(snakeElements);
 
@@ -106,13 +115,16 @@ namespace Snake
                 //Game Over After Health = 0
                 if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
                 {
+                    DamageSound.Play();
+                    SoundCheck = true;
                     Console.Clear();
                     health -= 1;
                     DrawObstacles(obstacles);
 
                     if (health == 0)
                     {
-
+                        GameOverSound.Play();
+                        //BackgroundSound.PlayLooping();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Clear();
                         Console.SetCursorPosition(55, 10);
@@ -143,6 +155,9 @@ namespace Snake
                 {
                     if (snakeNewHead.col == food[i].col && snakeNewHead.row == food[i].row)
                     {
+                        BiteSound.Play();
+                        SoundCheck = true;
+
                         // feeding the snake
                         do
                         {
@@ -196,6 +211,21 @@ namespace Snake
                 DrawFood(food);
                 sleepTime -= 0.01;
                 Thread.Sleep((int)sleepTime);
+
+
+                if (SoundCheck == true)
+                {
+                    if (SoundPlayTime == 0)
+                    {
+                        BackgroundSound.PlayLooping();
+                        SoundPlayTime = 2;
+                        SoundCheck = false;
+                    }
+                    else
+                    {
+                        SoundPlayTime--;
+                    }
+                }
             }      
         }
 
