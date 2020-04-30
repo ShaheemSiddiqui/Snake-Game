@@ -157,7 +157,7 @@ namespace Snake
                     {
                         BiteSound.Play();
                         SoundCheck = true;
-
+                        snakeElements.Enqueue(food[i]);
                         // feeding the snake
                         do
                         {
